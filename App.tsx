@@ -1,12 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer, RouteProp, useNavigation } from "@react-navigation/native";
+import { StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
+import { YourNavigationParamList } from './pages/Game'
+import Game from './pages/Game';
+import { History } from './pages/History';
+
+const Stack = createStackNavigator();
+
+type StackNavigation = {
+   Game: undefined
+  History: undefined
+}
+
+export type StackTypes = StackNavigationProp<StackNavigation>
+
 
 export default function App() {
+
+  const Stack = createStackNavigator()
+
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Game" component={Game} />
+        <Stack.Screen name="History" component={History} />
+      </Stack.Navigator>
+    </NavigationContainer>
+
   );
 }
 
